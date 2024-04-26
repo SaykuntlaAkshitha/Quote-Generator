@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Quote.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <p id="quote">
+                live love laugh
+            </p>
+            <h2 id="author">akshitha</h2>
+            <button id="btn">Get Quote</button>
+        </div>
+    </div>
+    <script>
+        let quote = document.getElementById("quote");
+        let author = document.getElementById("author");
+        let btn = document.getElementById("btn");
+        const url = "https://api.quotable.io/random";
+
+        let getQuote = () => {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    quote.innerText = data.content;
+                    author.innerText = data.author;
+                })
+                .catch(error => console.log("Error fetching quote:", error));
+        }
+
+        window.addEventListener("load", getQuote);
+        btn.addEventListener("click", getQuote);
+    </script>
+</body>
+</html>
